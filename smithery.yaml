@@ -1,0 +1,14 @@
+startCommand:
+  type: http
+  configSchema:
+    type: object
+    properties: {}
+  commandFunction: |
+    (config) => ({url: 'https://rumblingb.github.io/seo-tagcraft'})
+
+displayName: "SEO TagCraft Premium"
+description: "SEO meta tag generator with live Google SERP and social media previews, site analyzer, and keyword density tool."
+categories:
+  - "SEO"
+  - "Marketing"
+  - "Developer Tools"
