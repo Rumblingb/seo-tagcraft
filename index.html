@@ -3,46 +3,514 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEO TagCraft — AgentPay Labs</title>
+<title>SEO TagCraft — Generate Meta Tags, OG Tags & Twitter Cards Free</title>
+<meta name="description" content="Generate perfect meta tags, Open Graph tags, and Twitter Cards in seconds. Live Google SERP preview. Copy the HTML snippet and paste into your site.">
+<meta property="og:title" content="SEO TagCraft — Meta Tag Generator with Live Preview">
+<meta property="og:description" content="Fill in your page details, see a live Google search preview, and copy the complete HTML tag snippet. Free.">
+<meta property="og:url" content="https://rumblingb.github.io/seo-tagcraft/">
+<link rel="canonical" href="https://rumblingb.github.io/seo-tagcraft/">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
-.container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-.logo { font-size: 14px; color: #6366f1; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
-h1 { font-size: 48px; font-weight: 700; margin-bottom: 16px; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.subtitle { font-size: 20px; color: #888; margin-bottom: 40px; }
-.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
-.feature { background: #111; border: 1px solid #222; border-radius: 12px; padding: 24px; }
-.feature h3 { font-size: 16px; color: #6366f1; margin-bottom: 8px; }
-.feature p { font-size: 14px; color: #888; }
-.pricing { display: flex; gap: 20px; margin: 40px 0; flex-wrap: wrap; }
-.card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 32px; flex: 1; min-width: 200px; }
-.card.featured { border-color: #6366f1; background: #0f0f1a; }
-.card h3 { font-size: 18px; margin-bottom: 12px; }
-.price { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
-.price span { font-size: 16px; color: #888; font-weight: 400; }
-.card p { font-size: 14px; color: #888; margin-bottom: 20px; }
-.btn { display: inline-block; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
-.btn-primary { background: #6366f1; color: white; }
-.btn-outline { border: 1px solid #444; color: #ccc; }
-.footer { text-align: center; color: #555; font-size: 12px; margin-top: 60px; }
+:root{
+  --bg:#08100f;--surface:#0f1a18;--surface2:#162320;--border:rgba(255,255,255,.08);
+  --text:#e2ede9;--muted:#6b8c7e;--accent:#10b981;--accent2:#34d399;--accent3:#6ee7b7;
+  --red:#f87171;--amber:#fbbf24;--radius:10px;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+
+nav{padding:.8rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:rgba(8,16,15,.85);backdrop-filter:blur(12px);position:sticky;top:0;z-index:50}
+.nav-logo{font-weight:800;font-size:.95rem;display:flex;align-items:center;gap:.5rem}
+.nav-logo .icon{width:28px;height:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#08100f;font-weight:900}
+.nav-right{display:flex;gap:.6rem;align-items:center}
+.nav-link{font-size:.8rem;color:var(--muted);padding:.3rem .65rem;border-radius:5px;transition:color .15s;text-decoration:none}
+.nav-link:hover{color:var(--text)}
+.btn-pro{background:var(--accent);color:#08100f;font-size:.8rem;font-weight:800;padding:.35rem .9rem;border-radius:6px;border:none;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.btn-pro:hover{background:var(--accent2);transform:translateY(-1px)}
+
+.hero{text-align:center;padding:3.5rem 1.5rem 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 50% 0%,rgba(16,185,129,.12) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:var(--accent3);padding:.25rem .85rem;border-radius:99px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1.1rem}
+.hero h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;letter-spacing:-.025em;line-height:1.1;margin-bottom:.65rem}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:.95rem;max-width:440px;margin:0 auto}
+
+/* MAIN LAYOUT */
+.main{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:1100px;margin:2rem auto;padding:0 1.5rem 4rem}
+
+/* FORM CARD */
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.section-head{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;justify-content:space-between}
+.section-tabs{display:flex;gap:2px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px}
+.stab{padding:.25rem .7rem;border-radius:4px;font-size:.72rem;font-weight:600;cursor:pointer;color:var(--muted);border:none;background:transparent;font-family:var(--font);transition:all .15s}
+.stab.active{background:var(--surface2);color:var(--text)}
+
+.form-body{padding:1.25rem}
+.field-group{margin-bottom:1rem}
+.field-label{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;display:flex;align-items:center;justify-content:space-between}
+.char-limit{font-weight:400;font-size:.7rem}
+.char-limit.over{color:var(--red)}
+.char-limit.warn{color:var(--amber)}
+.char-limit.ok{color:var(--accent2)}
+input[type=text],input[type=url],textarea.field{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:.6rem .85rem;color:var(--text);font-size:.88rem;font-family:var(--font);outline:none;transition:border-color .2s}
+input[type=text]:focus,input[type=url]:focus,textarea.field:focus{border-color:rgba(16,185,129,.4)}
+input::placeholder,textarea.field::placeholder{color:var(--muted)}
+textarea.field{resize:vertical;min-height:70px;line-height:1.55}
+.field-hint{font-size:.7rem;color:var(--muted);margin-top:.3rem}
+
+.robot-select{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem}
+.robot-chip{font-size:.72rem;padding:.2rem .6rem;border-radius:5px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all .15s;user-select:none}
+.robot-chip.active{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.3);color:var(--accent2)}
+
+/* PREVIEW CARD */
+.preview-card{display:flex;flex-direction:column;gap:1.25rem}
+
+/* SERP PREVIEW */
+.serp-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.serp-body{padding:1.25rem}
+.serp-mock{background:#fff;border-radius:8px;padding:1rem 1.1rem;max-width:600px}
+.serp-url{font-size:.78rem;color:#006621;margin-bottom:.2rem;display:flex;align-items:center;gap:.3rem}
+.serp-favicon{width:16px;height:16px;border-radius:3px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:#fff;font-weight:900;flex-shrink:0}
+.serp-title{font-size:1.1rem;color:#1a0dab;font-weight:400;margin-bottom:.25rem;line-height:1.3;font-family:Arial,sans-serif;overflow:hidden;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical}
+.serp-desc{font-size:.82rem;color:#545454;font-family:Arial,sans-serif;line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.serp-meta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.serp-tag{font-size:.68rem;padding:.15rem .5rem;border-radius:4px;font-weight:700}
+.tag-ok{background:rgba(16,185,129,.12);color:var(--accent2);border:1px solid rgba(16,185,129,.2)}
+.tag-warn{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
+.tag-bad{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+
+/* OG PREVIEW */
+.og-mock{background:#fff;border-radius:8px;overflow:hidden;max-width:500px}
+.og-img-placeholder{background:linear-gradient(135deg,#e8f4f0,#c8e6da);height:130px;display:flex;align-items:center;justify-content:center;color:#6b8c7e;font-size:.8rem;font-family:Arial,sans-serif;position:relative}
+.og-img-real{width:100%;height:130px;object-fit:cover;display:none}
+.og-body{padding:.85rem 1rem;border:1px solid #ddd;border-top:none}
+.og-domain{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.04em;font-family:Arial,sans-serif}
+.og-title{font-size:.95rem;font-weight:700;color:#1c1e21;font-family:Arial,sans-serif;line-height:1.3;margin:.15rem 0}
+.og-desc{font-size:.82rem;color:#606770;font-family:Arial,sans-serif;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+/* TWITTER PREVIEW */
+.tw-mock{background:#fff;border:1px solid #cfd9de;border-radius:16px;overflow:hidden;max-width:500px}
+.tw-img{background:linear-gradient(135deg,#e8f4f0,#c8e6da);height:120px;display:flex;align-items:center;justify-content:center;color:#6b8c7e;font-size:.8rem;font-family:Arial,sans-serif}
+.tw-body{padding:.75rem 1rem}
+.tw-title{font-size:.92rem;font-weight:700;color:#0f1419;font-family:Arial,sans-serif}
+.tw-desc{font-size:.82rem;color:#536471;font-family:Arial,sans-serif;line-height:1.4;margin:.15rem 0}
+.tw-domain{font-size:.75rem;color:#536471;font-family:Arial,sans-serif}
+
+/* OUTPUT */
+.output-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.output-head{padding:.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.copy-btn{font-size:.78rem;padding:.3rem .8rem;border-radius:6px;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.08);color:var(--accent2);cursor:pointer;font-family:var(--font);transition:all .15s}
+.copy-btn:hover{background:rgba(16,185,129,.15)}
+.copy-btn.done{background:rgba(16,185,129,.2);color:var(--accent3)}
+.code-block{padding:1rem 1.25rem;font-family:'JetBrains Mono','Fira Code',Consolas,monospace;font-size:.78rem;line-height:1.75;overflow-x:auto;color:#a3d9c4;white-space:pre}
+.hl-tag{color:#f87171}
+.hl-attr{color:#93c5fd}
+.hl-val{color:#a3d9c4}
+.hl-str{color:#86efac}
+.hl-cmt{color:#4b7a62;font-style:italic}
+
+@media(max-width:850px){
+  .main{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  nav{padding:.7rem 1rem}
+  .nav-right .nav-link{display:none}
+  .hero{padding:2.5rem 1rem 1.5rem}
+  .main{margin:1rem auto;padding:0 1rem 3rem}
+}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="logo">AgentPay Labs</div>
-<h1>SEO TagCraft</h1>
-<p class="subtitle">AI-powered SEO tag generation</p>
-<div class="features">
-<div class="feature"><h3>🚀 Instant</h3><p>Works immediately in your browser</p></div>
-<div class="feature"><h3>⚡ Fast</h3><p>Built for speed and efficiency</p></div>
-<div class="feature"><h3>🔐 Secure</h3><p>No data collection, all local</p></div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="icon">◈</div>
+    SEO TagCraft
+  </div>
+  <div class="nav-right">
+    <a href="https://rumblingb.github.io/jacks-toolbox/" class="nav-link">More Tools</a>
+    <button class="btn-pro" onclick="openPro()">Get Pro</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">◈ Meta · OG · Twitter Cards · Robots</div>
+  <h1>Generate every tag<br><span>your page needs.</span></h1>
+  <p>Fill in your page details. Get a live SERP preview and a complete, copy-ready HTML snippet.</p>
 </div>
-<div class="pricing">
-<div class="card"><h3>Free</h3><p class="price">$0</p><p>Basic access</p><a href="#" class="btn btn-outline">Try Free</a></div>
-<div class="card featured"><h3>Pro</h3><p class="price">$9<span>/mo</span></p><p>Full access</p><a href="https://buy.stripe.com/aFaeVfa1x5VG3ryfrt1oI0a" class="btn btn-primary">Subscribe</a></div>
+
+<div class="main">
+  <!-- FORM -->
+  <div class="form-card">
+    <div class="section-head">
+      Page Details
+      <div class="section-tabs">
+        <button class="stab active" onclick="setTab('basic',this)">Basic</button>
+        <button class="stab" onclick="setTab('social',this)">Social</button>
+        <button class="stab" onclick="setTab('advanced',this)">Advanced</button>
+      </div>
+    </div>
+    <div class="form-body">
+      <!-- BASIC TAB -->
+      <div id="tab-basic">
+        <div class="field-group">
+          <div class="field-label">Page Title <span class="char-limit" id="titleCount">0/60</span></div>
+          <input type="text" id="title" placeholder="My Awesome Page — Brand Name" oninput="update()">
+          <div class="field-hint">Ideal: 50–60 chars. Shown in browser tab and Google results.</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Meta Description <span class="char-limit" id="descCount">0/160</span></div>
+          <textarea class="field" id="description" placeholder="A clear, compelling description of this page. Include your main keyword near the start." oninput="update()"></textarea>
+          <div class="field-hint">Ideal: 120–160 chars. Shown in Google results under the title.</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Page URL</div>
+          <input type="url" id="url" placeholder="https://example.com/page" oninput="update()">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Keywords <span style="font-weight:400;font-size:.7rem">(optional)</span></div>
+          <input type="text" id="keywords" placeholder="seo, meta tags, open graph" oninput="update()">
+          <div class="field-hint">Comma-separated. Not a ranking factor, but some tools use it.</div>
+        </div>
+      </div>
+
+      <!-- SOCIAL TAB -->
+      <div id="tab-social" style="display:none">
+        <div class="field-group">
+          <div class="field-label">OG / Twitter Title <span class="char-limit" id="ogTitleCount">0/60</span></div>
+          <input type="text" id="ogTitle" placeholder="Same as page title or customise for social" oninput="update()">
+        </div>
+        <div class="field-group">
+          <div class="field-label">OG / Twitter Description <span class="char-limit" id="ogDescCount">0/200</span></div>
+          <textarea class="field" id="ogDesc" placeholder="Social-specific description — can be more casual than meta description" oninput="update()"></textarea>
+        </div>
+        <div class="field-group">
+          <div class="field-label">OG Image URL</div>
+          <input type="url" id="ogImage" placeholder="https://example.com/og-image.png (1200×630px)" oninput="update()">
+          <div class="field-hint">Ideal size: 1200×630px. PNG or JPG. Will show in link previews.</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Site Name</div>
+          <input type="text" id="siteName" placeholder="My Brand" oninput="update()">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Twitter Handle</div>
+          <input type="text" id="twitterHandle" placeholder="@mybrand" oninput="update()">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Twitter Card Type</div>
+          <select id="twitterCard" onchange="update()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.5rem .75rem;border-radius:7px;font-size:.88rem;font-family:var(--font);width:100%;outline:none">
+            <option value="summary_large_image">summary_large_image (recommended)</option>
+            <option value="summary">summary (small image)</option>
+            <option value="app">app</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ADVANCED TAB -->
+      <div id="tab-advanced" style="display:none">
+        <div class="field-group">
+          <div class="field-label">Robots</div>
+          <div class="robot-select" id="robotChips"></div>
+          <div class="field-hint">Controls what search engines can do with this page.</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Canonical URL</div>
+          <input type="url" id="canonical" placeholder="https://example.com/canonical-page" oninput="update()">
+          <div class="field-hint">Set if this page has duplicate content elsewhere.</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Author</div>
+          <input type="text" id="author" placeholder="John Doe" oninput="update()">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Language</div>
+          <input type="text" id="lang" placeholder="en" value="en" oninput="update()">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Content Type</div>
+          <select id="ogType" onchange="update()" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.5rem .75rem;border-radius:7px;font-size:.88rem;font-family:var(--font);width:100%;outline:none">
+            <option value="website">website</option>
+            <option value="article">article</option>
+            <option value="product">product</option>
+            <option value="profile">profile</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="preview-card">
+    <div class="serp-card">
+      <div class="section-head">
+        Google Preview
+        <div class="section-tabs">
+          <button class="stab active" onclick="setPreview('serp',this)">Search</button>
+          <button class="stab" onclick="setPreview('og',this)">Facebook</button>
+          <button class="stab" onclick="setPreview('twitter',this)">Twitter</button>
+        </div>
+      </div>
+      <div class="serp-body">
+        <div id="preview-serp">
+          <div class="serp-mock">
+            <div class="serp-url"><div class="serp-favicon" id="serpFav">S</div><span id="serpUrl">example.com</span></div>
+            <div class="serp-title" id="serpTitle">Page Title</div>
+            <div class="serp-desc" id="serpDesc">Your meta description will appear here. Make it compelling and informative.</div>
+          </div>
+          <div class="serp-meta" id="serpMeta"></div>
+        </div>
+        <div id="preview-og" style="display:none">
+          <div class="og-mock">
+            <img class="og-img-real" id="ogImgReal" src="" alt="">
+            <div class="og-img-placeholder" id="ogImgPlaceholder">1200×630 — Add OG image URL in Social tab</div>
+            <div class="og-body">
+              <div class="og-domain" id="ogDomain">example.com</div>
+              <div class="og-title" id="ogTitlePreview">Page Title</div>
+              <div class="og-desc" id="ogDescPreview">Your Open Graph description</div>
+            </div>
+          </div>
+        </div>
+        <div id="preview-twitter" style="display:none">
+          <div class="tw-mock">
+            <div class="tw-img" id="twImg">Add OG image URL in Social tab</div>
+            <div class="tw-body">
+              <div class="tw-title" id="twTitle">Page Title</div>
+              <div class="tw-desc" id="twDesc">Description</div>
+              <div class="tw-domain" id="twDomain">example.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="output-card">
+      <div class="output-head">
+        <span class="section-head" style="padding:0;border:none">Generated HTML</span>
+        <button class="copy-btn" id="copyBtn" onclick="copyCode()">Copy all tags</button>
+      </div>
+      <div class="code-block" id="codeBlock"></div>
+    </div>
+  </div>
 </div>
-<div class="footer">© 2026 AgentPay Labs. Built for the agent economy.</div>
-</div>
+
+<script>
+const ROBOTS_OPTIONS=['index','noindex','follow','nofollow','noarchive','nosnippet'];
+let activeRobots=new Set(['index','follow']);
+let activeTab='basic', activePreview='serp';
+
+// Build robot chips
+const rc=document.getElementById('robotChips');
+ROBOTS_OPTIONS.forEach(r=>{
+  const c=document.createElement('div');
+  c.className='robot-chip'+(activeRobots.has(r)?' active':'');
+  c.textContent=r;
+  c.onclick=()=>{
+    if(activeRobots.has(r)){
+      // Don't allow removing both index/noindex or follow/nofollow
+      activeRobots.delete(r);
+      if(r==='index'&&!activeRobots.has('noindex')){}
+    } else {
+      if(r==='index')activeRobots.delete('noindex');
+      if(r==='noindex')activeRobots.delete('index');
+      if(r==='follow')activeRobots.delete('nofollow');
+      if(r==='nofollow')activeRobots.delete('follow');
+      activeRobots.add(r);
+    }
+    document.querySelectorAll('.robot-chip').forEach((el,i)=>{
+      el.classList.toggle('active',activeRobots.has(ROBOTS_OPTIONS[i]));
+    });
+    update();
+  };
+  rc.appendChild(c);
+});
+
+function setTab(t,el){
+  activeTab=t;
+  ['basic','social','advanced'].forEach(id=>{
+    document.getElementById('tab-'+id).style.display=id===t?'block':'none';
+  });
+  document.querySelectorAll('.section-tabs .stab').forEach((b,i)=>{
+    b.classList.toggle('active',b===el);
+  });
+}
+
+function setPreview(p,el){
+  activePreview=p;
+  ['serp','og','twitter'].forEach(id=>{
+    document.getElementById('preview-'+id).style.display=id===p?'block':'none';
+  });
+  el.closest('.section-tabs').querySelectorAll('.stab').forEach(b=>b.classList.toggle('active',b===el));
+}
+
+function getDomain(url){
+  try{return new URL(url).hostname.replace(/^www\./,'');}catch{return url.replace(/^https?:\/\//,'').split('/')[0]||'example.com';}
+}
+
+function countChars(id,countId,warn,max){
+  const val=document.getElementById(id).value;
+  const len=val.length;
+  const el=document.getElementById(countId);
+  el.textContent=`${len}/${max}`;
+  el.className='char-limit '+(len>max?'over':len>=warn?'warn':'ok');
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function update(){
+  const title=document.getElementById('title').value;
+  const desc=document.getElementById('description').value;
+  const url=document.getElementById('url').value;
+  const keywords=document.getElementById('keywords').value;
+  const ogTitle=document.getElementById('ogTitle').value||title;
+  const ogDesc=document.getElementById('ogDesc').value||desc;
+  const ogImage=document.getElementById('ogImage').value;
+  const siteName=document.getElementById('siteName').value;
+  const twitterHandle=document.getElementById('twitterHandle').value;
+  const twitterCard=document.getElementById('twitterCard').value;
+  const canonical=document.getElementById('canonical').value||url;
+  const author=document.getElementById('author').value;
+  const lang=document.getElementById('lang').value||'en';
+  const ogType=document.getElementById('ogType').value;
+  const robots=[...activeRobots].join(', ');
+  const domain=getDomain(url);
+
+  // Count
+  countChars('title','titleCount',50,60);
+  countChars('description','descCount',120,160);
+  countChars('ogTitle','ogTitleCount',50,60);
+  countChars('ogDesc','ogDescCount',150,200);
+
+  // SERP preview
+  document.getElementById('serpUrl').textContent=domain+(url.replace(/^https?:\/\/[^/]+/,'').substring(0,30)||'');
+  document.getElementById('serpTitle').textContent=title||'Page Title';
+  document.getElementById('serpDesc').textContent=desc||'Your meta description will appear here.';
+  document.getElementById('serpFav').textContent=(siteName||domain||'S')[0].toUpperCase();
+
+  // SERP meta tags
+  const titleLen=title.length, descLen=desc.length;
+  let metaHTML='';
+  if(titleLen>0)metaHTML+=`<span class="serp-tag ${titleLen<=60?'tag-ok':titleLen<=70?'tag-warn':'tag-bad'}">Title: ${titleLen} chars</span>`;
+  if(descLen>0)metaHTML+=`<span class="serp-tag ${descLen>=120&&descLen<=160?'tag-ok':descLen>0&&descLen<120?'tag-warn':'tag-bad'}">Desc: ${descLen} chars</span>`;
+  if(canonical)metaHTML+=`<span class="serp-tag tag-ok">Canonical ✓</span>`;
+  if(robots.includes('noindex'))metaHTML+=`<span class="serp-tag tag-bad">noindex</span>`;
+  document.getElementById('serpMeta').innerHTML=metaHTML;
+
+  // OG preview
+  document.getElementById('ogDomain').textContent=domain;
+  document.getElementById('ogTitlePreview').textContent=ogTitle||'Page Title';
+  document.getElementById('ogDescPreview').textContent=ogDesc||'Description';
+  if(ogImage){
+    const img=document.getElementById('ogImgReal');
+    img.src=ogImage;img.style.display='block';
+    document.getElementById('ogImgPlaceholder').style.display='none';
+  } else {
+    document.getElementById('ogImgReal').style.display='none';
+    document.getElementById('ogImgPlaceholder').style.display='flex';
+  }
+
+  // Twitter preview
+  document.getElementById('twTitle').textContent=ogTitle||'Page Title';
+  document.getElementById('twDesc').textContent=ogDesc||'Description';
+  document.getElementById('twDomain').textContent=domain;
+  document.getElementById('twImg').textContent=ogImage?'':'\u{1F5BC} Add OG image URL in Social tab';
+  if(ogImage)document.getElementById('twImg').style.backgroundImage=`url(${ogImage})`;
+
+  // Generate code
+  let code='';
+  code+=`<!-- Primary Meta Tags -->\n`;
+  if(lang)code+=`<html lang="${esc(lang)}">\n`;
+  if(title)code+=`<title>${esc(title)}</title>\n`;
+  if(desc)code+=`<meta name="description" content="${esc(desc)}">\n`;
+  if(keywords)code+=`<meta name="keywords" content="${esc(keywords)}">\n`;
+  if(author)code+=`<meta name="author" content="${esc(author)}">\n`;
+  if(robots)code+=`<meta name="robots" content="${esc(robots)}">\n`;
+  if(canonical)code+=`<link rel="canonical" href="${esc(canonical)}">\n`;
+
+  code+=`\n<!-- Open Graph / Facebook -->\n`;
+  code+=`<meta property="og:type" content="${esc(ogType)}">\n`;
+  if(url)code+=`<meta property="og:url" content="${esc(url)}">\n`;
+  if(ogTitle)code+=`<meta property="og:title" content="${esc(ogTitle)}">\n`;
+  if(ogDesc)code+=`<meta property="og:description" content="${esc(ogDesc)}">\n`;
+  if(ogImage)code+=`<meta property="og:image" content="${esc(ogImage)}">\n`;
+  if(siteName)code+=`<meta property="og:site_name" content="${esc(siteName)}">\n`;
+
+  code+=`\n<!-- Twitter -->\n`;
+  code+=`<meta property="twitter:card" content="${esc(twitterCard)}">\n`;
+  if(url)code+=`<meta property="twitter:url" content="${esc(url)}">\n`;
+  if(ogTitle)code+=`<meta property="twitter:title" content="${esc(ogTitle)}">\n`;
+  if(ogDesc)code+=`<meta property="twitter:description" content="${esc(ogDesc)}">\n`;
+  if(ogImage)code+=`<meta property="twitter:image" content="${esc(ogImage)}">\n`;
+  if(twitterHandle)code+=`<meta name="twitter:site" content="${esc(twitterHandle)}">\n`;
+
+  // Syntax highlight
+  const hl=code
+    .replace(/&lt;!--.*?--&gt;/g,m=>`<span class="hl-cmt">${m}</span>`)
+    .replace(/&lt;\/?(\w+)/g,(_,t)=>`&lt;<span class="hl-tag">${t}</span>`)
+    .replace(/(\w+)=/g,(_,a)=>`<span class="hl-attr">${a}</span>=`)
+    .replace(/"([^"]*)"/g,(_,v)=>`"<span class="hl-str">${v}</span>"`);
+
+  document.getElementById('codeBlock').innerHTML=esc(code).replace(/&amp;lt;!--.*?--&amp;gt;/g,m=>`<span class="hl-cmt">${m}</span>`);
+  document.getElementById('codeBlock').textContent='';
+  document.getElementById('codeBlock').innerHTML=code.replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(&lt;!--.*?--&gt;)/g,'<span class="hl-cmt">$1</span>')
+    .replace(/&lt;(\/?[\w]+)/g,'&lt;<span class="hl-tag">$1</span>')
+    .replace(/([\w-]+)=/g,'<span class="hl-attr">$1</span>=')
+    .replace(/"([^"]*)"/g,'"<span class="hl-str">$1</span>"');
+}
+
+function copyCode(){
+  const btn=document.getElementById('copyBtn');
+  // Get plain text
+  const title=document.getElementById('title').value;
+  const desc=document.getElementById('description').value;
+  const url=document.getElementById('url').value;
+  const keywords=document.getElementById('keywords').value;
+  const ogTitle=document.getElementById('ogTitle').value||title;
+  const ogDesc=document.getElementById('ogDesc').value||desc;
+  const ogImage=document.getElementById('ogImage').value;
+  const siteName=document.getElementById('siteName').value;
+  const twitterHandle=document.getElementById('twitterHandle').value;
+  const twitterCard=document.getElementById('twitterCard').value;
+  const canonical=document.getElementById('canonical').value||url;
+  const author=document.getElementById('author').value;
+  const lang=document.getElementById('lang').value||'en';
+  const ogType=document.getElementById('ogType').value;
+  const robots=[...activeRobots].join(', ');
+
+  let code='';
+  code+=`<!-- Primary Meta Tags -->\n`;
+  if(lang)code+=`<html lang="${lang}">\n`;
+  if(title)code+=`<title>${title}</title>\n`;
+  if(desc)code+=`<meta name="description" content="${desc}">\n`;
+  if(keywords)code+=`<meta name="keywords" content="${keywords}">\n`;
+  if(author)code+=`<meta name="author" content="${author}">\n`;
+  if(robots)code+=`<meta name="robots" content="${robots}">\n`;
+  if(canonical)code+=`<link rel="canonical" href="${canonical}">\n`;
+  code+=`\n<!-- Open Graph / Facebook -->\n`;
+  code+=`<meta property="og:type" content="${ogType}">\n`;
+  if(url)code+=`<meta property="og:url" content="${url}">\n`;
+  if(ogTitle)code+=`<meta property="og:title" content="${ogTitle}">\n`;
+  if(ogDesc)code+=`<meta property="og:description" content="${ogDesc}">\n`;
+  if(ogImage)code+=`<meta property="og:image" content="${ogImage}">\n`;
+  if(siteName)code+=`<meta property="og:site_name" content="${siteName}">\n`;
+  code+=`\n<!-- Twitter -->\n`;
+  code+=`<meta property="twitter:card" content="${twitterCard}">\n`;
+  if(url)code+=`<meta property="twitter:url" content="${url}">\n`;
+  if(ogTitle)code+=`<meta property="twitter:title" content="${ogTitle}">\n`;
+  if(ogDesc)code+=`<meta property="twitter:description" content="${ogDesc}">\n`;
+  if(ogImage)code+=`<meta property="twitter:image" content="${ogImage}">\n`;
+  if(twitterHandle)code+=`<meta name="twitter:site" content="${twitterHandle}">\n`;
+
+  navigator.clipboard.writeText(code).then(()=>{
+    btn.textContent='✓ Copied!';btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='Copy all tags';btn.classList.remove('done');},2000);
+  });
+}
+
+function openPro(){window.open('https://buy.stripe.com/14A3cx5LhfwgaU0gvx1oI0i','_blank');}
+
+update();
+</script>
 </body>
 </html>
